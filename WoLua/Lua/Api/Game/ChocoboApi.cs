@@ -23,9 +23,9 @@ public class ChocoboApi(ScriptContainer source): ApiBase(source) { // TODO luado
 	public bool? Unlocked => this ? (this.Rank ?? 0) > 0 : null;
 	public byte? Stars => this.obj?.Stars;
 	public byte? SkillPoints => this.obj?.SkillPoints;
-	public byte? DefenderLevel => this.obj?.DefenderLevel;
-	public byte? AttackerLevel => this.obj?.AttackerLevel;
-	public byte? HealerLevel => this.obj?.HealerLevel;
+	public byte? DefenderLevel => this.obj?.Levels[0];
+	public byte? AttackerLevel => this.obj?.Levels[1];
+	public byte? HealerLevel => this.obj?.Levels[2];
 	public unsafe string? Name => this.obj?.NameString;
 
 	public unsafe uint? CurrentHp => this.Summoned ?? false ? this.obj!.Value.Companion->CurrentHealth : null;

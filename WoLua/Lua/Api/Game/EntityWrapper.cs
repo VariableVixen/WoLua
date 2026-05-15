@@ -124,7 +124,7 @@ public sealed record class EntityWrapper(IGameObject? Entity): IWorldObjectWrapp
 
 	#region Entity type
 
-	public bool IsPlayer => this && this.Entity?.ObjectKind is ObjectKind.Player;
+	public bool IsPlayer => this && this.Entity?.ObjectKind is ObjectKind.Pc;
 	public bool IsCombatNpc => this && this.Entity?.ObjectKind is ObjectKind.BattleNpc;
 	public bool IsTalkNpc => this && this.Entity?.ObjectKind is ObjectKind.EventNpc;
 	public bool IsNpc => this.IsCombatNpc || this.IsTalkNpc;
@@ -132,11 +132,11 @@ public sealed record class EntityWrapper(IGameObject? Entity): IWorldObjectWrapp
 	public bool IsAetheryte => this && this.Entity?.ObjectKind is ObjectKind.Aetheryte;
 	public bool IsGatheringNode => this && this.Entity?.ObjectKind is ObjectKind.GatheringPoint;
 	public bool IsEventObject => this && this.Entity?.ObjectKind is ObjectKind.EventObj;
-	public bool IsMount => this && this.Entity?.ObjectKind is ObjectKind.MountType;
+	public bool IsMount => this && this.Entity?.ObjectKind is ObjectKind.Mount;
 	public bool IsMinion => this && this.Entity?.ObjectKind is ObjectKind.Companion;
 	public bool IsRetainer => this && this.Entity?.ObjectKind is ObjectKind.Retainer;
-	public bool IsArea => this && this.Entity?.ObjectKind is ObjectKind.Area;
-	public bool IsHousingObject => this && this.Entity?.ObjectKind is ObjectKind.Housing;
+	public bool IsArea => this && this.Entity?.ObjectKind is ObjectKind.AreaObject;
+	public bool IsHousingObject => this && this.Entity?.ObjectKind is ObjectKind.HousingEventObject;
 	public bool IsCutsceneObject => this && this.Entity?.ObjectKind is ObjectKind.Cutscene;
 	public bool IsCardStand => this && this.Entity?.ObjectKind is ObjectKind.CardStand;
 	public bool IsOrnament => this && this.Entity?.ObjectKind is ObjectKind.Ornament;
