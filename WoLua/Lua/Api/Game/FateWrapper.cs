@@ -60,8 +60,8 @@ public sealed record class FateWrapper(Fate? WorldFate): IWorldObjectWrapper {
 		"If this FATE has already ended, this will be `nil`.")]
 	public int? TimeLeft => this.Valid
 		? this.State switch {
-			FateState.Preparation => this.Duration,
-			FateState.Running or FateState.WaitingForEnd => (int)this.WorldFate!.TimeRemaining,
+			FateState.Preparing => this.Duration,
+			FateState.Running or FateState.Ending => (int)this.WorldFate!.TimeRemaining,
 			FateState.Ended or FateState.Failed => 0,
 			_ => null,
 		}
@@ -81,16 +81,16 @@ public sealed record class FateWrapper(Fate? WorldFate): IWorldObjectWrapper {
 	public FateState State => this.Valid ? this.WorldFate!.State : FateState.Ended;
 
 	[LuaDoc("Whether this FATE is in the preparation phase, before it is actually started.")]
-	public bool Waiting => this.State is FateState.Preparation;
+	public bool Waiting => this.State is FateState.Preparing;
 
 	[LuaDoc("Whether this FATE is currently running.")]
 	public bool Running => this.State is FateState.Running;
 
 	[LuaDoc("Whether this FATE is currently in its ending phase, as seen in item turnin FATEs.")]
-	public bool Ending => this.State is FateState.WaitingForEnd;
+	public bool Ending => this.State is FateState.Ending;
 
 	[LuaDoc("Whether this FATE is considered \"active\", either waiting to be started or currently in progress.")]
-	public bool Active => this.State is FateState.Preparation or FateState.Running;
+	public bool Active => this.State is FateState.Preparing or FateState.Running;
 
 	#endregion
 
